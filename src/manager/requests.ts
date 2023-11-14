@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../constant/api";
 
 export async function createManager(
   url: string,
@@ -22,5 +23,6 @@ export async function deleteManger(url: string) {
 }
 
 export const getAllBooks = async () => {
-  return await getManger(`${BASE_URL}books`);
+  const { data } = await getManger(`${BASE_URL}books`);
+  return data.data;
 };

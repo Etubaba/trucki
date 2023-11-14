@@ -2,9 +2,15 @@ import { Button } from "@chakra-ui/react";
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import BookTable from "../components/booklist/BookTable";
+import { BookType } from "../types";
+import { useRevalidator } from "react-router-dom";
 
 const Books = () => {
-  const bookData = useLoaderData();
+  const books = useLoaderData() as BookType[];
+
+  const revalidate = useRevalidator();
+  const refresh = revalidate.revalidate;
+
   return (
     <div>
       <div className="flex md:flex-row mb-10  md:space-y-0 justify-between items-center">
@@ -22,7 +28,7 @@ const Books = () => {
           </Button>
         </Link>
       </div>
-      {/* <BookTable refetch={refetch} books={books} /> */}
+      <BookTable refetch={refresh} books={books} />
     </div>
   );
 };

@@ -12,12 +12,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Textarea,
   useToast,
 } from "@chakra-ui/react";
 import useRequest from "../../hooks/useRequest";
-// import { UPDATE_BOOK_MUTATION } from "../../graphql/mutations";
-// import { useMutation } from "@apollo/client";
+import { BASE_URL } from "../../constant/api";
 
 const UpdateBookModal = ({
   isOpen,
@@ -37,7 +35,7 @@ const UpdateBookModal = ({
         author: author === "" || author === book?.author ? undefined : author,
       };
 
-      await updateBooks("", input);
+      await updateBooks(`${BASE_URL}books/${book.id}`, input);
 
       // toast success notification on success
       toast({

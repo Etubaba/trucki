@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useRequest from "../hooks/useRequest";
+import { BASE_URL } from "../constant/api";
 
 const CreateBook = () => {
   const [bookName, setBookName] = useState("");
@@ -28,11 +29,11 @@ const CreateBook = () => {
         author,
       };
 
-      const { data } = await createBooks("", input);
+      await createBooks(`${BASE_URL}books`, input);
 
       // toast success notification on success
       toast({
-        title: `${data.createBook.name} Created.`,
+        title: `Book Created.`,
         description: `You created a book successfully.`,
         status: "success",
         duration: 6000,

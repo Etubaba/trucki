@@ -16,6 +16,7 @@ import {
 import UpdateBookModal from "./UpdateBookModal";
 import { TbBook2 } from "react-icons/tb";
 import useRequest from "../../hooks/useRequest";
+import { BASE_URL } from "../../constant/api";
 
 const BookTable = ({
   books,
@@ -41,12 +42,12 @@ const BookTable = ({
 
   const onDelete = async () => {
     try {
-      const { data } = await deleteBook("");
+      await deleteBook(`${BASE_URL}books/${bookId}`);
       refetch();
       onClose();
       toast({
-        title: `${data.removeBook.name} Deleted.`,
-        description: `${data.removeBook.name} has been deleted successfully.`,
+        title: `Book Deleted.`,
+        description: `Book has been deleted successfully.`,
         status: "success",
         duration: 6000,
         isClosable: true,
@@ -83,7 +84,7 @@ const BookTable = ({
                   scope="row"
                   className="px-4 py-4 font-medium  whitespace-nowrap "
                 >
-                  {item.id}
+                  {idx + 1}
                 </th>
                 <td className="px-6 py-4">{item.name}</td>
 
@@ -145,7 +146,7 @@ const BookTable = ({
 
             <div className="max-w-[12rem]">
               <Button
-                // onClick={onDelete}
+                onClick={onDelete}
                 size={"sm"}
                 color="red"
                 colorScheme="red"
