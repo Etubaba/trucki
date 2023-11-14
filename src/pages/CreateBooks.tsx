@@ -68,7 +68,7 @@ const CreateBook = () => {
         <p className="text-lg text-title   tracking-wide font-semibold">
           Create book
         </p>
-        <Link to={"/profile"}>
+        <Link to={"/"}>
           <Button
             color="#003D29"
             colorScheme="#003D29"
